@@ -27,12 +27,30 @@ export default class App extends Component {
 
   onDrop = (e, cat) => {
     let id = e.dataTransfer.getData("id");
+    /*
     let items = this.state.items.map((item) => {
       if(item.name === id){
         item.category = cat;
       }
       return item;
     });
+    */
+    let arr1 = this.state.items.filter((item) => {
+      let newItem;
+      if(item.name !== id){
+        newItem = item;
+      }
+      return newItem;
+    });
+    let arr2 = this.state.items.filter((item) => {
+      let newItem;
+      if(item.name === id){
+        item.category = cat;
+        newItem = item;
+      }
+      return newItem;
+    });
+    let items = arr1.concat(arr2);
     console.log('now dropping',id,'in category',cat)
     this.setState({
       items: items
