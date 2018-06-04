@@ -3,7 +3,7 @@ import './App.css';
 
 export default class App extends Component {
   state = {
-    tasks: [{name:"A",
+    items: [{name:"A",
              category: "left",
              bgcolor: "rgb(255, 43, 43)"},
 
@@ -27,15 +27,15 @@ export default class App extends Component {
 
   onDrop = (e, cat) => {
     let id = e.dataTransfer.getData("id");
-    let tasks = this.state.tasks.filter((task) => {
-      if(task.name === id){
-        task.category = cat;
+    let items = this.state.items.map((item) => {
+      if(item.name === id){
+        item.category = cat;
       }
-      return task;
+      return item;
     });
     console.log('now dropping',id,'in category',cat)
     this.setState({
-      tasks: tasks
+      items: items
     });
   }
 
@@ -44,10 +44,10 @@ export default class App extends Component {
   }
 
   render() {
-    let tasks = {left: [], right: [], center: []}
+    let items = {left: [], right: [], center: []}
 
-    this.state.tasks.forEach ((t) => {
-      tasks[t.category].push(
+    this.state.items.forEach ((t) => {
+      items[t.category].push(
         <div
           key={t.name}
           onDragStart={(e)=>this.onDragStart(e,t.name)}
@@ -68,26 +68,25 @@ export default class App extends Component {
           onDragOver={(e)=>this.onDragOver(e)}
           onDrop={(e)=>this.onDrop(e, "left")}
         >
-          <span className="task-header">LEFT</span>
-          {tasks.left}
-        </div>
-
-        <div className="right"
-            onDragOver={(e)=>this.onDragOver(e)}
-            onDrop={(e)=>this.onDrop(e, "right")}
-        >
-          <span className="task-header">RIGHT</span>
-          {tasks.right}
+          <span className="item-header">LEFT</span>
+          {items.left}
         </div>
 
         <div className="center"
             onDragOver={(e)=>this.onDragOver(e)}
             onDrop={(e)=>this.onDrop(e, "center")}
         >
-          <span className="task-header">CENTER</span>
-          {tasks.center}
+          <span className="item-header">CENTER</span>
+          {items.center}
         </div>
 
+        <div className="right"
+            onDragOver={(e)=>this.onDragOver(e)}
+            onDrop={(e)=>this.onDrop(e, "right")}
+        >
+          <span className="item-header">RIGHT</span>
+          {items.right}
+        </div>
       </div>
     );
   }
