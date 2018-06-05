@@ -16,16 +16,16 @@ export default class App extends Component {
              bgcolor: "rgb(43, 43, 255)"}]
   };
 
-  onDragOver = (e) => {
+  onDragOver(e){
     e.preventDefault();
   }
 
-  onDragStart = (e, name) => {
+  onDragStart(e, name){
     console.log('now dragging',name);
     e.dataTransfer.setData("name", name);
   }
 
-  onDrop = (e, cat) => {
+  onDrop(e, cat){
     let name = e.dataTransfer.getData("name");
     let arr1 = this.state.items.filter((item) => {
       if(item.name !== name){
@@ -51,19 +51,19 @@ export default class App extends Component {
     document.title = "Drag Drop Test"
   }
 
-  render() {
+  render(){
     let items = {left: [], right: [], center: []}
 
-    this.state.items.forEach ((t) => {
-      items[t.category].push(
+    this.state.items.forEach ((item) => {
+      items[item.category].push(
         <div
-          key={t.name}
-          onDragStart={(e)=>this.onDragStart(e,t.name)}
+          key={item.name}
+          onDragStart={(e)=>this.onDragStart(e,item.name)}
           draggable
           className="drag-box"
-          style={{backgroundColor: t.bgcolor}}
+          style={{backgroundColor: item.bgcolor}}
         >
-          {t.name}
+          {item.name}
         </div>
       );
     });
