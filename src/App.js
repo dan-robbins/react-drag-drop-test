@@ -46,7 +46,7 @@ export default class App extends Component {
     });
   }
 
-  componentDnameMount(){
+  componentDidMount(){
     document.title = "Drag Drop Test"
   }
 
