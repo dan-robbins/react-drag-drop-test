@@ -9,11 +9,11 @@ export default class App extends Component {
 
             {name:"B",
              category: "center",
-             bgcolor: "rgb(68, 255, 90)"},
+             bgcolor: "rgb(43, 255, 43)"},
 
             {name:"C",
              category: "right",
-             bgcolor: "rgb(11, 96, 232)"}]
+             bgcolor: "rgb(43, 43, 255)"}]
   };
 
   onDragOver = (e) => {
@@ -36,19 +36,17 @@ export default class App extends Component {
     });
     */
     let arr1 = this.state.items.filter((item) => {
-      let newItem;
       if(item.name !== id){
-        newItem = item;
+        return true
       }
-      return newItem;
+      return false;
     });
     let arr2 = this.state.items.filter((item) => {
-      let newItem;
       if(item.name === id){
         item.category = cat;
-        newItem = item;
+        return true;
       }
-      return newItem;
+      return false;
     });
     let items = arr1.concat(arr2);
     console.log('now dropping',id,'in category',cat)
