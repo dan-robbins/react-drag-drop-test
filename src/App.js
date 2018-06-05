@@ -20,42 +20,34 @@ export default class App extends Component {
     e.preventDefault();
   }
 
-  onDragStart = (e, id) => {
-    console.log('now dragging',id);
-    e.dataTransfer.setData("id", id);
+  onDragStart = (e, name) => {
+    console.log('now dragging',name);
+    e.dataTransfer.setData("name", name);
   }
 
   onDrop = (e, cat) => {
-    let id = e.dataTransfer.getData("id");
-    /*
-    let items = this.state.items.map((item) => {
-      if(item.name === id){
-        item.category = cat;
-      }
-      return item;
-    });
-    */
+    let name = e.dataTransfer.getData("name");
     let arr1 = this.state.items.filter((item) => {
-      if(item.name !== id){
+      if(item.name !== name){
         return true
       }
       return false;
     });
     let arr2 = this.state.items.filter((item) => {
-      if(item.name === id){
+      if(item.name === name){
         item.category = cat;
         return true;
       }
       return false;
     });
     let items = arr1.concat(arr2);
-    console.log('now dropping',id,'in category',cat)
+    console.log('now dropping',name,'in category',cat)
     this.setState({
       items: items
     });
   }
 
-  componentDidMount(){
+  componentDnameMount(){
     document.title = "Drag Drop Test"
   }
 
@@ -79,8 +71,6 @@ export default class App extends Component {
     return (
       <div className="container-drag">
         <h1 className="header">Drag & Drop Test</h1>
-
-        <div className="background"></div>
 
         <div className="left"
           onDragOver={(e)=>this.onDragOver(e)}
