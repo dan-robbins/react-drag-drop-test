@@ -22,20 +22,29 @@
   width:100%;
 }
 
+.background {
+  position: absolute;
+  width: 90vw;
+  height: 96vh;
+  left: 0;
+  top: 10;
+  background-color: #262626;
+}
+
 .left {
   position: absolute;
   width: 25vw;
-  height: 100vh;
+  height: 96vh;
   left: 0;
   top: 10;
-  background-color: #eeeeee;
+  background-color: #9e9e9e;
   border-right: 1px dotted;
 }
 
 .right {
   position: absolute;
   width: 25vw;
-  height: 100vh;
+  height: 96vh;
   right: 0;
   top: 10;
   background-color: #9e9e9e;
@@ -45,18 +54,18 @@
 .center {
   position: absolute;
   width: 25vw;
-  height: 100vh;
+  height: 96vh;
   right: 37.5vw;
   top: 10;
-  background-color: #cecece;
+  background-color: #9e9e9e;
   border-left: 1px dotted;
   border-right: 1px dotted;
 }
 
-.draggable {
+.drag-box {
   width: 100px;
   height: 100px;
   background-color: #ff00e5;
   margin: 5px auto;
-  line-height: 5em;
+  line-height: 6em;
 }

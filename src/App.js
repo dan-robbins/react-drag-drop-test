@@ -70,7 +70,7 @@ export default class App extends Component {
           key={t.name}
           onDragStart={(e)=>this.onDragStart(e,t.name)}
           draggable
-          className="draggable"
+          className="drag-box"
           style={{backgroundColor: t.bgcolor}}
         >
           {t.name}
@@ -81,6 +81,8 @@ export default class App extends Component {
     return (
       <div className="container-drag">
         <h1 className="header">Drag & Drop Test</h1>
+
+        <div className="background"></div>
 
         <div className="left"
           onDragOver={(e)=>this.onDragOver(e)}
