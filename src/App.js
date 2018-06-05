@@ -1,20 +1,19 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './App.css';
 
 export default class App extends Component {
-  state = {
-    items: [{name:"A",
-             category: "left",
-             bgcolor: "rgb(255, 43, 43)"},
+  static propTypes = {
+    items: PropTypes.arrayOf(
+      PropTypes.shape({name: PropTypes.string,
+                       category: PropTypes.oneOf(["left", "center", "right"]).isRequired,
+                       bgcolor: PropTypes.string})).isRequired
+  }
 
-            {name:"B",
-             category: "center",
-             bgcolor: "rgb(43, 255, 43)"},
-
-            {name:"C",
-             category: "right",
-             bgcolor: "rgb(43, 43, 255)"}]
-  };
+  constructor(props){
+    super(props);
+    this.state = {items: this.props.items};
+  }
 
   onDragOver(e){
     e.preventDefault();
